@@ -10,9 +10,6 @@ export default (req, res, next) => {
   try {
     const token = jwt.verify(req.headers.authorization.split(' ')[1], process.env.JWT_SECRET);
     req.token = token;
-    if (token.guest) {
-      throw new Error('Cannot access this route as guest');
-    }
     next();
   } catch (error) {
     return res.status(401).json({

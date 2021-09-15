@@ -189,4 +189,15 @@ export default {
 
     return res.status(200).json(userToDelete);
   },
+  getGuestToken(_req, res) {
+    const accessToken = jwt.sign(
+      {
+        guest: true,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '2h' },
+    );
+
+    return res.status(200).json({ accessToken });
+  },
 };

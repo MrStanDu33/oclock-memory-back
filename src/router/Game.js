@@ -1,13 +1,13 @@
 import Express from 'express';
-import auth from '$src/middlewares/auth';
+import authWithGuest from '$src/middlewares/authWithGuest';
 import GameController from '$src/controllers/Game';
 
 const Router = Express();
 
-Router.get('/', auth, GameController.getAll);
-Router.post('/', auth, GameController.create);
-Router.get('/:gameId', auth, GameController.getOne);
-Router.put('/:gameId', auth, GameController.updateOne);
-Router.delete('/:gameId', auth, GameController.deleteOne);
+Router.get('/', authWithGuest, GameController.getAll);
+Router.post('/', authWithGuest, GameController.create);
+Router.get('/:gameId', authWithGuest, GameController.getOne);
+Router.put('/:gameId', authWithGuest, GameController.updateOne);
+Router.delete('/:gameId', authWithGuest, GameController.deleteOne);
 
 export default Router;

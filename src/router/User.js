@@ -6,7 +6,7 @@ const Router = Express();
 
 Router.post(
   '/signup',
-  (req, res, next) => {
+  (req, _res, next) => {
     req.withAuth = true;
     next();
   },
@@ -18,5 +18,6 @@ Router.post('/', auth, UserController.create);
 Router.get('/:userId', auth, UserController.getOne);
 Router.put('/:userId', auth, UserController.updateOne);
 Router.delete('/:userId', auth, UserController.deleteOne);
+Router.post('/guest', UserController.getGuestToken);
 
 export default Router;
