@@ -20,6 +20,11 @@ connection.authenticate().then(async () => {
     const model = modelFile(connection);
     models[model.name] = model;
   }
+  models.User.hasMany(models.Game, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  });
+  models.Game.belongsTo(models.User);
   connection.sync({ alter: true });
 });
 
