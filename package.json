@@ -1,0 +1,48 @@
+{
+  "name": "oclock-memory-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "private": "true",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint . --ext .js --ignore-pattern node_modules/",
+    "preinstall": "link-module-alias clean || echo",
+    "postinstall": "link-module-alias",
+    "start": "node --experimental-specifier-resolution=node server.js",
+    "dev": "nodemon --experimental-specifier-resolution=node --inspect server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrStanDu33/oclock-memory-back.git"
+  },
+  "author": "DANIELS-ROTH Stan",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/MrStanDu33/oclock-memory-back/issues"
+  },
+  "homepage": "https://github.com/MrStanDu33/oclock-memory-back#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "link-module-alias": "^1.2.0",
+    "prettier": "^2.4.0"
+  },
+  "_moduleAliases": {
+    "$src": "src"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "es-dirname": "^0.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.0",
+    "sequelize": "^6.6.5"
+  }
+}
