@@ -61,6 +61,12 @@ export default {
       });
     }
 
+    if (!req.token.user.isAdmin && req.token.user.id !== gameToUpdate.UserId) {
+      return res.status(401).json({
+        message: 'Unauthorized',
+      });
+    }
+
     await models.Game.update({ ...req.body, UserId: req.token.user.id }, { where: { id: gameId } });
 
     const updatedGame = await models.Game.findOne({
@@ -79,6 +85,12 @@ export default {
     if (!gameToDelete) {
       return res.status(404).json({
         message: 'Game not found',
+      });
+    }
+
+    if (!req.token.user.isAdmin && req.token.user.id !== gameToDelete.UserId) {
+      return res.status(401).json({
+        message: 'Unauthorized',
       });
     }
 

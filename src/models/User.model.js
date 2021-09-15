@@ -31,6 +31,11 @@ export default (connection) =>
         type: DataTypes.STRING,
         allowNull: false,
       },
+      isAdmin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        default: false,
+      },
     },
     {},
   );

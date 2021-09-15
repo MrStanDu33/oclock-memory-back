@@ -47,6 +47,7 @@ export default {
     const createdUser = await models.User.create({
       ...req.body,
       password: hashedPassword,
+      isAdmin: false,
     });
 
     if (req.withAuth) {
@@ -119,6 +120,14 @@ export default {
   },
 
   async updateOne(req, res) {
+    const { userId } = req.params;
+
+    if (!req.token.user.isAdmin && req.token.user.id !== userId) {
+      return res.status(401).json({
+        message: 'Unauthorized',
+      });
+    }
+
     if (!validateCreationInput(req.body)) {
       return res.status(400).json({
         message: 'Sent datas does not match prerequisites',
@@ -136,8 +145,6 @@ export default {
         message: 'Username or email already used',
       });
     }
-
-    const { userId } = req.params;
 
     const userToUpdate = await models.User.findOne({ where: { id: userId } });
 
@@ -160,6 +167,12 @@ export default {
 
   async deleteOne(req, res) {
     const { userId } = req.params;
+
+    if (!req.token.user.isAdmin && req.token.user.id !== userId) {
+      return res.status(401).json({
+        message: 'Unauthorized',
+      });
+    }
 
     const userToDelete = await models.User.findOne({
       where: { id: userId },
