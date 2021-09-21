@@ -30,7 +30,7 @@ Once project is initialized, you may rename `.env.example` file to `.env`, and s
 
 ## Usage
 
-If you want to run it, lauch SansPriseDeBot by running
+If you want to run it, lauch the API by running
 
 ```bash
 npm run prod
