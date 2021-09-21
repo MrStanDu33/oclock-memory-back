@@ -53,11 +53,11 @@ export default {
 
     const { gameId } = req.params;
 
-    const gameToUpdate = await models.User.findOne({ where: { id: gameId } });
+    const gameToUpdate = await models.Game.findOne({ where: { id: gameId } });
 
     if (!gameToUpdate) {
       return res.status(404).json({
-        message: 'User not found',
+        message: 'Game not found',
       });
     }
 

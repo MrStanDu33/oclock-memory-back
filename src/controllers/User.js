@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import CryptoJS from 'crypto-js';
 import models from '$src/models';
 
 const validateCreationInput = (data) => {
-  const keys = ['firstName', 'lastName', 'username', 'email', 'password', 'avatar'];
+  const keys = ['firstName', 'lastName', 'username', 'email', 'password'];
   for (let index = 0; index < keys.length; index += 1) {
     const key = keys[index];
     const value = data[key];
@@ -44,10 +45,13 @@ export default {
       });
     }
 
+    const emailHash = CryptoJS.MD5(req.body.email).toString();
+
     const createdUser = await models.User.create({
       ...req.body,
       password: hashedPassword,
       isAdmin: false,
+      avatar: `https://www.gravatar.com/avatar/${emailHash}`,
     });
 
     if (req.withAuth) {
