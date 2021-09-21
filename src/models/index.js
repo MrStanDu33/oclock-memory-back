@@ -25,7 +25,7 @@ connection.authenticate().then(async () => {
     onUpdate: 'CASCADE',
   });
   models.Game.belongsTo(models.User);
-  //  connection.sync({ alter: true });
+  connection.sync({ alter: true });
 });
 
 export default models;
